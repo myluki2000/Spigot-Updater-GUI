@@ -17,6 +17,9 @@ Public Class MainForm
                 HelpLabel.Text = "Now drop the patch.bps file"
             ElseIf PatchJar = "" Then
                 PatchJar = path
+                HelpLabel.Text = "Now select a place to save the output jar"
+                DropImage.Visible = False
+
             End If
         Next
     End Sub
@@ -29,5 +32,17 @@ Public Class MainForm
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Size = New Size(327, 393)
+    End Sub
+
+    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+        SaveJarDialog.ShowDialog()
+
+        OutputJar = SaveJarDialog.FileName
+
+        SaveButton.Hide()
+    End Sub
+
+    Private Sub PatchFile()
+
     End Sub
 End Class
