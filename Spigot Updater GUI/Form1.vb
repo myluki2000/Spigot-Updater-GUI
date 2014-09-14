@@ -11,6 +11,7 @@ Public Class MainForm
     Dim PatchJar As String = ""
     Dim OutputJar As String = ""
 
+    Dim Main As New Main
 
     Private Sub MainForm_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
         Dim files() As String = CType(e.Data.GetData(DataFormats.FileDrop), String())
@@ -57,6 +58,14 @@ Public Class MainForm
                 PatcherJar = filepath
                 HelpLabel.Text = "Drop the spigot-1649.jar here"
             ElseIf SpigotJar = "" Then
+                Dim md5hash As String = CStr(Main.GetMD5(filepath))
+
+                If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then
+                    MessageBox.Show("The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!")
+                    Return
+                End If
+
+
                 SpigotJar = filepath
                 HelpLabel.Text = "Now drop the patch.bps file here"
             ElseIf PatchJar = "" Then
