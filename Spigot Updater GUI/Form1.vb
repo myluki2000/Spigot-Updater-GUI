@@ -39,10 +39,10 @@ Public Class MainForm
 
         SaveButton.Hide()
 
-        PatchFile()
+        MsgBox.ShowDialog()
     End Sub
 
-    Private Sub PatchFile()
+    Public Sub PatchFile()
         HelpLabel.Text = "Patching your file, please wait..."
 
         Process.Start("cmd", "/c java -jar " + PatcherJar + " " + SpigotJar + " " + PatchJar + " " + OutputJar)
