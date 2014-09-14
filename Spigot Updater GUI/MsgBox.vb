@@ -3,9 +3,11 @@
 Public Class MsgBox
     Inherits MetroForm
 
+    Dim Main As New Main
+
     Private Sub OkButton_Click(sender As Object, e As EventArgs) Handles OkButton.Click
         If MainForm.FilePatching = True Then
-            MainForm.PatchFile()
+            Main.PatchFile()
         End If
 
         Me.Close()

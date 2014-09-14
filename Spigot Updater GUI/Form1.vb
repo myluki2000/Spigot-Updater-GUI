@@ -6,10 +6,10 @@ Imports System.IO
 Public Class MainForm
     Inherits MetroForm
 
-    Dim SpigotJar As String = ""
-    Dim PatcherJar As String = ""
-    Dim PatchJar As String = ""
-    Dim OutputJar As String = ""
+    Public SpigotJar As String = ""
+    Public PatcherJar As String = ""
+    Public PatchJar As String = ""
+    Public OutputJar As String = ""
 
     Public FilePatching As Boolean = False
 
@@ -20,7 +20,7 @@ Public Class MainForm
 
         For Each filepath In files
             If Path.GetExtension(filepath) = ".jar" OrElse Path.GetExtension(filepath) = ".bps" Then
-                DroppedFile(e)
+                Main.DroppedFile(e)
             End If
         Next
     End Sub
@@ -47,39 +47,7 @@ Public Class MainForm
         MsgBox.ShowDialog()
     End Sub
 
-    Public Sub PatchFile()
-        HelpLabel.Text = "Patching your file, please wait..."
+    
 
-        Process.Start("cmd", "/c java -jar " + PatcherJar + " " + SpigotJar + " " + PatchJar + " " + OutputJar)
-
-        HelpLabel.Text = "Your file has been patched!"
-    End Sub
-
-    Private Sub DroppedFile(e As DragEventArgs)
-        Dim files() As String = CType(e.Data.GetData(DataFormats.FileDrop), String())
-        For Each filepath In files
-            If PatcherJar = "" AndAlso Path.GetExtension(filepath) = ".jar" Then
-                PatcherJar = filepath
-                HelpLabel.Text = "Drop the spigot-1649.jar here"
-            ElseIf SpigotJar = "" Then
-                Dim md5hash As String = CStr(Main.GetMD5(filepath))
-
-                If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then
-
-                    FilePatching = False
-                    MsgBox.Label1.Text = "The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!"
-                    MsgBox.ShowDialog()
-                    Return
-                End If
-
-
-                SpigotJar = filepath
-                HelpLabel.Text = "Now drop the patch.bps file here"
-            ElseIf PatchJar = "" Then
-                PatchJar = filepath
-                HelpLabel.Text = "Now select a location for the patched jar"
-                DropImage.Visible = False
-            End If
-        Next
-    End Sub
+    
 End Class
