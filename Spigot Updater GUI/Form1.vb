@@ -11,6 +11,8 @@ Public Class MainForm
     Dim PatchJar As String = ""
     Dim OutputJar As String = ""
 
+    Public FilePatching As Boolean = False
+
     Dim Main As New Main
 
     Private Sub MainForm_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
@@ -40,6 +42,8 @@ Public Class MainForm
 
         SaveButton.Hide()
 
+        FilePatching = True
+        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself after it's done."
         MsgBox.ShowDialog()
     End Sub
 
@@ -61,7 +65,10 @@ Public Class MainForm
                 Dim md5hash As String = CStr(Main.GetMD5(filepath))
 
                 If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then
-                    MessageBox.Show("The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!")
+
+                    FilePatching = False
+                    MsgBox.Label1.Text = "The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!"
+                    MsgBox.ShowDialog()
                     Return
                 End If
 
