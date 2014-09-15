@@ -66,7 +66,10 @@ Public Class Main
             ElseIf MainForm.PatchBps = "" Then ' If no Patch file has been selected yet...
                 MainForm.PatchBps = filepath ' save the path of the one dropped in
                 MainForm.HelpLabel.Text = "Now select a location for the patched jar"
-                MainForm.DropImage.Visible = False ' Hide the image which indicates that you can drop stuff on the window
+
+                MainForm.SaveButton.Visible = True
+                MainForm.RedrawImage = False
+                MainForm.Refresh()
             End If
         Next
     End Sub

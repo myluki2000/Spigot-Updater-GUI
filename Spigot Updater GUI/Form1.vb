@@ -11,7 +11,11 @@ Public Class MainForm
     Public PatchBps As String = ""
     Public OutputJar As String = ""
 
+    Public RedrawImage As Boolean = True
+
     Public FilePatching As Boolean = False
+
+    Dim DropFileImage As New Bitmap(My.Resources.drop_file)
 
     Dim Main As New Main
 
@@ -47,7 +51,13 @@ Public Class MainForm
         MsgBox.ShowDialog()
     End Sub
 
-    
+    Private Sub MainForm_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+        If RedrawImage Then
+            e.Graphics.DrawImage(DropFileImage, New Rectangle(0, 38, 327, 290))
+        End If
+    End Sub
 
-    
+    Private Sub SaveJarDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveJarDialog.FileOk
+        SaveButton.Visible = False
+    End Sub
 End Class
