@@ -8,7 +8,7 @@ Public Class MainForm
 
     Public SpigotJar As String = ""
     Public PatcherJar As String = ""
-    Public PatchJar As String = ""
+    Public PatchBps As String = ""
     Public OutputJar As String = ""
 
     Public FilePatching As Boolean = False

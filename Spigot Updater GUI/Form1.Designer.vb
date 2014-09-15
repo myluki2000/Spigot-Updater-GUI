@@ -24,11 +24,13 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Dim MainColorScheme1 As MetroSuite.MetroButton.MainColorScheme = New MetroSuite.MetroButton.MainColorScheme()
+        Dim MainColorScheme2 As MetroSuite.MetroCheckBox.MainColorScheme = New MetroSuite.MetroCheckBox.MainColorScheme()
         Me.MetroControlBox1 = New MetroSuite.MetroControlBox()
         Me.DropImage = New System.Windows.Forms.PictureBox()
         Me.HelpLabel = New System.Windows.Forms.Label()
         Me.SaveButton = New MetroSuite.MetroButton()
         Me.SaveJarDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.ShowCmdCheckbox = New MetroSuite.MetroCheckBox()
         CType(Me.DropImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -38,7 +40,7 @@ Partial Class MainForm
         Me.MetroControlBox1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MetroControlBox1.FormHeight = 0
         Me.MetroControlBox1.FormWidth = 0
-        Me.MetroControlBox1.Location = New System.Drawing.Point(-110, 0)
+        Me.MetroControlBox1.Location = New System.Drawing.Point(217, 0)
         Me.MetroControlBox1.Name = "MetroControlBox1"
         Me.MetroControlBox1.Size = New System.Drawing.Size(110, 26)
         Me.MetroControlBox1.TabIndex = 0
@@ -86,12 +88,27 @@ Partial Class MainForm
         Me.SaveJarDialog.FileName = "output.jar"
         Me.SaveJarDialog.Filter = "jar File|*.jar"
         '
+        'ShowCmdCheckbox
+        '
+        Me.ShowCmdCheckbox.Checked = False
+        MainColorScheme2.BorderColor = System.Drawing.Color.White
+        MainColorScheme2.FillColor = System.Drawing.Color.Gray
+        MainColorScheme2.MainColor = System.Drawing.Color.White
+        Me.ShowCmdCheckbox.ColorScheme = MainColorScheme2
+        Me.ShowCmdCheckbox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(153, Byte), Integer), CType(CType(153, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.ShowCmdCheckbox.Location = New System.Drawing.Point(12, 8)
+        Me.ShowCmdCheckbox.Name = "ShowCmdCheckbox"
+        Me.ShowCmdCheckbox.Size = New System.Drawing.Size(147, 18)
+        Me.ShowCmdCheckbox.TabIndex = 4
+        Me.ShowCmdCheckbox.Text = "Show console window"
+        '
         'MainForm
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(0, 0)
+        Me.ClientSize = New System.Drawing.Size(327, 393)
+        Me.Controls.Add(Me.ShowCmdCheckbox)
         Me.Controls.Add(Me.HelpLabel)
         Me.Controls.Add(Me.MetroControlBox1)
         Me.Controls.Add(Me.DropImage)
@@ -108,5 +125,6 @@ Partial Class MainForm
     Friend WithEvents HelpLabel As System.Windows.Forms.Label
     Friend WithEvents SaveButton As MetroSuite.MetroButton
     Friend WithEvents SaveJarDialog As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents ShowCmdCheckbox As MetroSuite.MetroCheckBox
 
 End Class

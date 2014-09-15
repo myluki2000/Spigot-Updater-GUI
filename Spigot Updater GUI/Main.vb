@@ -27,9 +27,17 @@ Public Class Main
     End Function
 
     Public Sub PatchFile()
+        Dim p As New Process()
+
         MainForm.HelpLabel.Text = "Patching your file, please wait..."
 
-        Process.Start("cmd", "/c java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchJar + " " + MainForm.OutputJar)
+        ' giving exe name + start arguments
+        p.StartInfo.FileName = "cmd.exe"
+        p.StartInfo.Arguments = "/c java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchBps + " " + MainForm.OutputJar
+
+        ' starting cmd.exe
+        p.Start()
+
 
         MainForm.HelpLabel.Text = "Your file has been patched!"
     End Sub
@@ -43,21 +51,22 @@ Public Class Main
             ElseIf MainForm.SpigotJar = "" Then
                 Dim md5hash As String = CStr(GetMD5(filepath))
 
-                If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then
+                If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then ' If md5 hash isn't the one from the original spigot-1469.jar...
 
-                    MainForm.FilePatching = False
-                    MsgBox.Label1.Text = "The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!"
+                    MainForm.FilePatching = False ' ...don't patch it...
+                    MsgBox.Label1.Text = "The MD5 hash of the file you dropped doesn't match the Hash of the official spigot-1649.jar file!" ' ...and notifiy the user
                     MsgBox.ShowDialog()
                     Return
                 End If
 
-
-                MainForm.SpigotJar = filepath
+                ' If it is...
+                MainForm.SpigotJar = filepath ' ...save the path
                 MainForm.HelpLabel.Text = "Now drop the patch.bps file here"
-            ElseIf MainForm.PatchJar = "" Then
-                MainForm.PatchJar = filepath
+
+            ElseIf MainForm.PatchBps = "" Then ' If no Patch file has been selected yet...
+                MainForm.PatchBps = filepath ' save the path of the one dropped in
                 MainForm.HelpLabel.Text = "Now select a location for the patched jar"
-                MainForm.DropImage.Visible = False
+                MainForm.DropImage.Visible = False ' Hide the image which indicates that you can drop stuff on the window
             End If
         Next
     End Sub
