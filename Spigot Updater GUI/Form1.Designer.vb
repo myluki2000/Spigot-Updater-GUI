@@ -35,7 +35,7 @@ Partial Class MainForm
         Me.MetroControlBox1.Dock = System.Windows.Forms.DockStyle.Right
         Me.MetroControlBox1.FormHeight = 0
         Me.MetroControlBox1.FormWidth = 0
-        Me.MetroControlBox1.Location = New System.Drawing.Point(218, 0)
+        Me.MetroControlBox1.Location = New System.Drawing.Point(-110, 0)
         Me.MetroControlBox1.Name = "MetroControlBox1"
         Me.MetroControlBox1.Size = New System.Drawing.Size(110, 26)
         Me.MetroControlBox1.TabIndex = 0
@@ -79,7 +79,7 @@ Partial Class MainForm
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(328, 394)
+        Me.ClientSize = New System.Drawing.Size(0, 0)
         Me.Controls.Add(Me.HelpLabel)
         Me.Controls.Add(Me.MetroControlBox1)
         Me.Controls.Add(Me.SaveButton)
