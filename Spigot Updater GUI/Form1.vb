@@ -11,11 +11,13 @@ Public Class MainForm
     Public PatchBps As String = ""
     Public OutputJar As String = ""
 
-    Public RedrawImage As Boolean = True
+    Public DrawDropImage As Boolean = True
+    Public DrawPatchedImage As Boolean = False
 
     Public FilePatching As Boolean = False
 
     Dim DropFileImage As New Bitmap(My.Resources.drop_file)
+    Dim PatchingDoneImage As New Bitmap(My.Resources.patching_done)
 
     Dim Main As New Main
 
@@ -47,13 +49,15 @@ Public Class MainForm
         SaveButton.Hide()
 
         FilePatching = True
-        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself after it's done."
+        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself if it patched the file without errors. If it stays open, please consider looking on the Spigot Forums for help!"
         MsgBox.ShowDialog()
     End Sub
 
     Private Sub MainForm_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        If RedrawImage Then
+        If DrawDropImage Then
             e.Graphics.DrawImage(DropFileImage, New Rectangle(0, 38, 327, 290))
+        ElseIf DrawPatchedImage Then
+            e.Graphics.DrawImage(PatchingDoneImage, New Rectangle(0, 38, 327, 290))
         End If
     End Sub
 

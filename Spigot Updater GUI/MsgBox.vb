@@ -14,6 +14,6 @@ Public Class MsgBox
     End Sub
 
     Private Sub MsgBox_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Size = New Size(420, 115)
+        Me.Size = New Size(420, 156)
     End Sub
 End Class

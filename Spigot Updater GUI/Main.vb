@@ -40,6 +40,9 @@ Public Class Main
 
 
         MainForm.HelpLabel.Text = "Your file has been patched!"
+
+        MainForm.DrawPatchedImage = True
+        MainForm.Refresh()
     End Sub
 
     Public Sub DroppedFile(e As DragEventArgs)
@@ -68,7 +71,7 @@ Public Class Main
                 MainForm.HelpLabel.Text = "Now select a location for the patched jar"
 
                 MainForm.SaveButton.Visible = True
-                MainForm.RedrawImage = False
+                MainForm.DrawDropImage = False
                 MainForm.Refresh()
             End If
         Next
