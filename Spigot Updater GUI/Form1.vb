@@ -64,4 +64,8 @@ Public Class MainForm
     Private Sub SaveJarDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveJarDialog.FileOk
         SaveButton.Visible = False
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        SettingsForm.ShowDialog()
+    End Sub
 End Class
