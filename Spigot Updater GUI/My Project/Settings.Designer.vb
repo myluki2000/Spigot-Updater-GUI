@@ -53,6 +53,30 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property SpigotJarLoc() As String
+            Get
+                Return CType(Me("SpigotJarLoc"),String)
+            End Get
+            Set
+                Me("SpigotJarLoc") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property PatcherJarLoc() As String
+            Get
+                Return CType(Me("PatcherJarLoc"),String)
+            End Get
+            Set
+                Me("PatcherJarLoc") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
