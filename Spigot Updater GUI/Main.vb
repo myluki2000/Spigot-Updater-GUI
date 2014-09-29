@@ -33,7 +33,7 @@ Public Class Main
 
         ' giving exe name + start arguments
         p.StartInfo.FileName = "cmd.exe"
-        p.StartInfo.Arguments = "/c java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchBps + " " + MainForm.OutputJar
+        p.StartInfo.Arguments = "/C java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchBps + " " + MainForm.OutputJar
 
         ' starting cmd.exe
         p.Start()
@@ -48,10 +48,16 @@ Public Class Main
     Public Sub DroppedFile(e As DragEventArgs)
         Dim files() As String = CType(e.Data.GetData(DataFormats.FileDrop), String())
         For Each filepath In files
-            If MainForm.PatcherJar = "" AndAlso Path.GetExtension(filepath) = ".jar" Then
+            If My.Settings.PatcherJarLoc = "" AndAlso MainForm.PatcherJar = "" AndAlso Path.GetExtension(filepath) = ".jar" Then
                 MainForm.PatcherJar = filepath
-                MainForm.HelpLabel.Text = "Drop the spigot-1649.jar here"
-            ElseIf MainForm.SpigotJar = "" Then
+
+                If My.Settings.SpigotJarLoc = "" Then
+                    MainForm.HelpLabel.Text = "Drop the spigot-1649.jar here"
+                Else
+                    MainForm.HelpLabel.Text = "Now drop the patch.bps file here"
+                End If
+
+            ElseIf My.Settings.SpigotJarLoc = "" AndAlso MainForm.SpigotJar = "" AndAlso Path.GetExtension(filepath) = ".jar" Then
                 Dim md5hash As String = CStr(GetMD5(filepath))
 
                 If md5hash <> "F2EDC09C45B1F80237602DC0D1B05969" Then ' If md5 hash isn't the one from the original spigot-1469.jar...

@@ -19,6 +19,9 @@ Public Class SettingsForm
 
         ' Save Settings
         My.Settings.Save()
+
+        ' Hide this window
+        Me.Hide()
     End Sub
 
     Private Sub SpigotSelectButton_Click(sender As Object, e As EventArgs) Handles SpigotSelectButton.Click

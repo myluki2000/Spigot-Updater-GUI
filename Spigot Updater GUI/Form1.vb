@@ -39,6 +39,22 @@ Public Class MainForm
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Size = New Size(327, 393)
+
+        If My.Settings.PatcherJarLoc = "" Then
+            HelpLabel.Text = "Drop the SpigotPatcher.jar here"
+        ElseIf My.Settings.SpigotJarLoc = "" Then
+            HelpLabel.Text = "Drop the spigot-1649.jar here"
+        Else
+            HelpLabel.Text = "Drop the patch.bps file here"
+        End If
+
+        If My.Settings.PatcherJarLoc <> "" Then
+            PatcherJar = My.Settings.PatcherJarLoc
+        End If
+
+        If My.Settings.SpigotJarLoc <> "" Then
+            SpigotJar = My.Settings.SpigotJarLoc
+        End If
     End Sub
 
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
@@ -49,7 +65,7 @@ Public Class MainForm
         SaveButton.Hide()
 
         FilePatching = True
-        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself if it patched the file without errors. If it stays open, please consider looking on the Spigot Forums for help!"
+        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself after a moment. If your file hasn't been patched then, please activate Debugging"
         MsgBox.ShowDialog()
     End Sub
 
