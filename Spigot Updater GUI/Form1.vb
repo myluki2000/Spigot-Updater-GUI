@@ -65,7 +65,7 @@ Public Class MainForm
         SaveButton.Hide()
 
         FilePatching = True
-        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself after a moment. If your file hasn't been patched then, please activate Debugging"
+        MsgBox.Label1.Text = "After you click ok, a console window will open. It will close itself after a moment. If your file hasn't been patched then, please activate the 'Keep Console' Checkbox to get the error message."
         MsgBox.ShowDialog()
     End Sub
 

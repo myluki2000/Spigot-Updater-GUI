@@ -28,12 +28,19 @@ Public Class Main
 
     Public Sub PatchFile()
         Dim p As New Process()
+        Dim KeepConsole As String = "/C"
+
+        If MainForm.KeepConsoleCB.Checked Then
+            KeepConsole = "/K"
+        Else
+            KeepConsole = "/C"
+        End If
 
         MainForm.HelpLabel.Text = "Patching your file, please wait..."
 
         ' giving exe name + start arguments
         p.StartInfo.FileName = "cmd.exe"
-        p.StartInfo.Arguments = "/C java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchBps + " " + MainForm.OutputJar
+        p.StartInfo.Arguments = KeepConsole + " java -jar " + MainForm.PatcherJar + " " + MainForm.SpigotJar + " " + MainForm.PatchBps + " " + MainForm.OutputJar
 
         ' starting cmd.exe
         p.Start()
